@@ -28,11 +28,7 @@ class RecordList extends \TYPO3\CMS\Recordlist\RecordList {
 	 */
 	public function __construct() {
 		parent::__construct();
-
-		$GLOBALS['TBE_TEMPLATE']->getPageRenderer()->addJsInlineCode('typo3_version', 'var sg_t3version="' . TYPO3_version . '";');
-		$GLOBALS['TBE_TEMPLATE']->getPageRenderer()->loadJquery();
-		$GLOBALS['TBE_TEMPLATE']->getPageRenderer()->loadRequireJs();
-		$GLOBALS['TBE_TEMPLATE']->getPageRenderer()->addJsFile(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('listview_dnd') . 'Resources/Public/JavaScript/dnd.js');
+		$GLOBALS['TBE_TEMPLATE']->loadJavascriptLib(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('listview_dnd') . 'Resources/Public/JavaScript/dnd.js');
 	}
 }
 
