@@ -16,17 +16,10 @@
  */
 (function($) {
 	$(document).ready(function() {
-		var version = parseInt(sg_t3version, 10);
 
-		if(version === 6) {
-			require(['jquery','jquery-ui/jquery-ui-1.10.4.custom.min'], function() {
-				enableSorting();
-			});
-		} else {
-			require(['jquery', 'jquery-ui/sortable'], function () {
-				enableSorting();
-			});
-		}
+		require(['jquery', 'jquery-ui/sortable'], function () {
+			enableSorting();
+		});
 
 		function enableSorting() {
 			var $tables = $('form[name="dblistForm"] table');
@@ -70,11 +63,7 @@
 			var baseURL = $tr.find('span.draggable').data('url');
 			var table = $tr.find('span.draggable').data('table');
 			var sourceID = $tr.find('span.draggable').data('uid');
-			if(version === 6) {
-				var targetID = $prev.hasClass('c-headLine') ? $tr.find('span.draggable').data('pid') : -$prev.find('span.draggable').data('uid');
-			} else {
-				var targetID = $prev.length === 0 ? $tr.find('span.draggable').data('pid') : -$prev.find('span.draggable').data('uid');
-			}
+			var targetID = $prev.length === 0 ? $tr.find('span.draggable').data('pid') : -$prev.find('span.draggable').data('uid');
 			var params = '&cmd[' + table + '][' + sourceID + '][move]=' + targetID;
 			var url = baseURL + params;
 			$.get(url);
